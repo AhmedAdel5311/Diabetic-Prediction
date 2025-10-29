@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Diabetes Prediction</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+
+  <style>
+    /* Center everything */
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #e3f2fd;
+      font-family: 'Arimo', sans-serif;
+    }
+
+    .login {
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 450px;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      color: #2c3e50;
+      margin-bottom: 25px;
+      font-size: 34px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 14px;
+      margin: 12px 0;
+      border-radius: 8px;
+      border: 1px solid #bbb;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+      font-weight: bold;
+      background-color: #4CAF50;
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+      transform: scale(1.03);
+    }
+
+    ::placeholder {
+      color: #666;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login">
+    <h1>Diabetes Prediction</h1>
+
+    <form action="{{ url_for('predict') }}" method="post">
+
+      <!-- Gender Dropdown -->
+      <select name="gender" required>
+        <option value="" disabled selected>Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+
+      <!-- Age Input -->
+      <input type="text" name="age" placeholder="Enter Age" required="required" />
+
+      <!-- Hypertension Dropdown -->
+      <select name="hypertension" required>
+        <option value="" disabled selected>Hypertension</option>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>
+
+      <!-- Heart Disease Dropdown -->
+      <select name="heart_disease" required>
+        <option value="" disabled selected>Heart Disease</option>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>
+
+      <!-- Smoking History Dropdown -->
+      <select name="smoking_history" required>
+        <option value="" disabled selected>Smoking History</option>
+        <option value="never">Never</option>
+        <option value="former">Former</option>
+        <option value="current">Current</option>
+        <option value="ever">Ever</option>
+        <option value="not current">Not Current</option>
+      </select>
+
+      <!-- Other Inputs -->
+      <input type="text" name="bmi" placeholder="Enter BMI" required="required" />
+      <input type="text" name="HbA1c_level" placeholder="Enter HbA1c Level" required="required" />
+      <input type="text" name="blood_glucose_level" placeholder="Enter Blood Glucose Level" required="required" />
+
+      <button type="submit">Predict</button>
+    </form>
+
+    <br>
+    <div>
+      {{prediction_text}}
+    </div>
+  </div>
+</body>
+
+</html>
